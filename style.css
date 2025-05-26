@@ -1,0 +1,40 @@
+body {
+    font-family: sans-serif;
+    padding: 2rem;
+    background: black;
+    color: white;
+}
+
+#quantityGroup1 label,
+#quantityGroup2 label,
+#quantityGroup3 label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#layout1Group label,
+#layout2Group label,
+#layout3Group label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+}
+
+input {
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+button {
+    margin-right: 0.5rem;
+}
+
