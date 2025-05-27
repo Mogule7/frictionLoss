@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Length × Quantity Checker</title>
+    <title>Friction Loss Practice</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -14,108 +14,114 @@
 
 <!-- Step 1: Input Length and Quantity -->
     <div id="step1">
-        <h2>Enter Layout Information</h2>
+        <h2>Enter Scenario Information</h2>
         <form id="form1">
             <h3>1: Select a layout</h3>
-            <label><input type="radio" name="layout" value="1" required />1.75" attack line</label>
+            <label><input type="radio" name="layout" value="1" />1.75" attack line</label>
             <label><input type="radio" name="layout" value="2" />2.5" attack line</label>
             <label><input type="radio" name="layout" value="3" />Two 1.75" hoses connected to a gated wye supplied by a 2.5" hoseline</label>
 
-        <div id="hoseGroups" class="hidden">
-            <h3>2: Hose Length:</h3>
+            <div id="hoseGroups" class="hidden">
+                <h3>2: Hose Length:</h3>
 
-            <div id="layout1Group" class="hidden">
-                <label for="layout1Group">Sections of 1.75" hose:</label>
-                <div>
-                    <label><input type="radio" name="hose" value="1">1</label>
-                    <label><input type="radio" name="hose" value="2">2</label>
-                    <label><input type="radio" name="hose" value="3">3</label>
-                    <label><input type="radio" name="hose" value="4">4</label>
-                    <label><input type="radio" name="hose" value="5">5</label>
-                    <label><input type="radio" name="hose" value="6">6</label>
+                <div id="layout1Group" class="hidden">
+                    <label for="layout1Group">Sections of 1.75" hose:</label>
+                    <div>
+                        <label><input type="radio" name="hose" value="1">1</label>
+                        <label><input type="radio" name="hose" value="2">2</label>
+                        <label><input type="radio" name="hose" value="3">3</label>
+                        <label><input type="radio" name="hose" value="4">4</label>
+                        <label><input type="radio" name="hose" value="5">5</label>
+                        <label><input type="radio" name="hose" value="6">6</label>
+                    </div>
+                </div>
+
+                <div id="layout2Group" class="hidden">
+                    <label for="layout2Group">Sections of 2.5" hose:</label>
+                    <div>
+                        <label><input type="radio" name="hose" value="1">1</label>
+                        <label><input type="radio" name="hose" value="2">2</label>
+                        <label><input type="radio" name="hose" value="3">3</label>
+                        <label><input type="radio" name="hose" value="4">4</label>
+                        <label><input type="radio" name="hose" value="5">5</label>
+                        <label><input type="radio" name="hose" value="6">6</label>
+                    </div>
+                </div>
+
+                <div id="layout3Group" class="hidden">
+                    <label for="layout3Group">Number of 1.75" sections:</label>
+                    <div>
+                        <label><input type="radio" name="hose1" value="1">1</label>
+                        <label><input type="radio" name="hose1" value="2">2</label>
+                        <label><input type="radio" name="hose1" value="3">3</label>
+                        <label><input type="radio" name="hose1" value="4">4</label>
+                        <label><input type="radio" name="hose1" value="5">5</label>
+                        <label><input type="radio" name="hose1" value="6">6</label>
+                    </div>
+
+                    <label for="layout3Group">Number of 2.5" sections:</label>
+                    <div>
+                        <label><input type="radio" name="hose2" value="1">1</label>
+                        <label><input type="radio" name="hose2" value="2">2</label>
+                        <label><input type="radio" name="hose2" value="3">3</label>
+                        <label><input type="radio" name="hose2" value="4">4</label>
+                        <label><input type="radio" name="hose2" value="5">5</label>
+                    </div>
                 </div>
             </div>
 
-            <div id="layout2Group" class="hidden">
-                <label for="layout2Group">Sections of 2.5" hose:</label>
-                <div>
-                    <label><input type="radio" name="hose" value="1">1</label>
-                    <label><input type="radio" name="hose" value="2">2</label>
-                    <label><input type="radio" name="hose" value="3">3</label>
-                    <label><input type="radio" name="hose" value="4">4</label>
-                    <label><input type="radio" name="hose" value="5">5</label>
-                    <label><input type="radio" name="hose" value="6">6</label>
+            <div id="quantityGroups" class="hidden">
+                <h3 class="hidden" id="layoutGPMDefault">3: GPM Flow:</h3>
+                <h3 class="hidden" id="layout3GPM">3: GPM through a single nozzle:</h3>
+                <div id="quantityGroup1" class="hidden">
+                    <label><input type="radio" name="quantity" value="30" />30</label>
+                    <label><input type="radio" name="quantity" value="60" />60</label>
+                    <label><input type="radio" name="quantity" value="95" id="defaultGPM"/>95</label>
+                    <label><input type="radio" name="quantity" value="125" />125</label>
+                    <label><input type="radio" name="quantity" value="150" />150</label>
+                    <label><input type="radio" name="quantity" value="200" />200</label>
+                    <label><input type="radio" name="quantity" value="other" />Other</label>
+                    <input type="number" id="quantityOther1" class="hidden" placeholder="Please specify" min="25" max="500"/>
+                </div>
+
+                <div id="quantityGroup2" class="hidden">
+                    <label><input type="radio" name="quantity" value="95" />95</label>
+                    <label><input type="radio" name="quantity" value="125" />125</label>
+                    <label><input type="radio" name="quantity" value="150" />150</label>
+                    <label><input type="radio" name="quantity" value="200" id="defaultGPM2"/>200</label>
+                    <label><input type="radio" name="quantity" value="250" />250</label>
+                    <label><input type="radio" name="quantity" value="other" />Other</label>
+                    <input type="number" id="quantityOther2" class="hidden" placeholder="Please specify" min="25" max="500"/>
                 </div>
             </div>
 
-            <div id="layout3Group" class="hidden">
-                <label for="layout3Group">Number of 1.75" sections:</label>
-                <div>
-                    <label><input type="radio" name="hose1" value="1">1</label>
-                    <label><input type="radio" name="hose1" value="2">2</label>
-                    <label><input type="radio" name="hose1" value="3">3</label>
-                    <label><input type="radio" name="hose1" value="4">4</label>
-                    <label><input type="radio" name="hose1" value="5">5</label>
-                    <label><input type="radio" name="hose1" value="6">6</label>
-                </div>
-
-                <label for="layout3Group">Number of 2.5" sections:</label>
-                <div>
-                    <label><input type="radio" name="hose2" value="1">1</label>
-                    <label><input type="radio" name="hose2" value="2">2</label>
-                    <label><input type="radio" name="hose2" value="3">3</label>
-                    <label><input type="radio" name="hose2" value="4">4</label>
-                    <label><input type="radio" name="hose2" value="5">5</label>
-                </div>
+            <div id="nozzleGroup" class="hidden">
+                <h3>4: Nozzle</h3>
+                <label><input type="radio" name="nozzle" value="1" />Smooth-Bore Nozzle</label>
+                <label><input type="radio" name="nozzle" value="2" />Fog Nozzle</label>
             </div>
-        </div>
-
-        <div id="quantityGroups" class="hidden">
-            <h3 class="hidden" id="layoutGPMDefault">3: GPM Flow:</h3>
-            <h3 class="hidden" id="layout3GPM">3: GPM through a single nozzle:</h3>
-            <div id="quantityGroup1" class="hidden">
-                <label><input type="radio" name="quantity" value="30" />30</label>
-                <label><input type="radio" name="quantity" value="60" />60</label>
-                <label><input type="radio" name="quantity" value="95" id="defaultGPM"/>95</label>
-                <label><input type="radio" name="quantity" value="125" />125</label>
-                <label><input type="radio" name="quantity" value="150" />150</label>
-                <label><input type="radio" name="quantity" value="200" />200</label>
-                <label><input type="radio" name="quantity" value="other" />Other</label>
-                <input type="number" id="quantityOther1" class="hidden" placeholder="Please specify" min="25" max="500" required/>
-            </div>
-
-            <div id="quantityGroup2" class="hidden">
-                <label><input type="radio" name="quantity" value="95" />95</label>
-                <label><input type="radio" name="quantity" value="125" />125</label>
-                <label><input type="radio" name="quantity" value="150" />150</label>
-                <label><input type="radio" name="quantity" value="200" id="defaultGPM2"/>200</label>
-                <label><input type="radio" name="quantity" value="250" />250</label>
-                <label><input type="radio" name="quantity" value="other" />Other</label>
-                <input type="number" id="quantityOther2" class="hidden" placeholder="Please specify" min="25" max="500" required/>
-            </div>
-        </div>
-
-        <div id="optionsGroup" class="hidden">
-            <h3>4: Nozzle</h3>
-            <label><input type="radio" name="nozzle" value="1" required />Smooth-Bore Nozzle</label>
-            <label><input type="radio" name="nozzle" value="2" required />Fog Nozzle</label>
-        </div>
 
             <br><br>
-            <button type="submit">Next</button>
+            <button type="submit" id="manualSubmit">Next</button>
+            <button type="button" id="randomScenario">Random Scenario</button>
         </form>
     </div>
 
+
     <!-- Step 2: Ask the User to Guess the Result -->
     <div id="step2" class="hidden">
-        <h2>Step 2: What is Length × Quantity?</h2>
+        <h2 id="scenario"></h2>
+        <br>
+        <h2>At what pressure should the pump discharge be set?</h2>
         <form id="form2">
-            <label for="guess">Your Answer:</label>
+            <label for="guess">Pump discharge pressure:</label>
             <input type="number" id="guess" required />
             <button type="submit">Submit Answer</button>
             <button type="button" id="resetBtn">Reset</button>
         </form>
-        <p id="feedback"></p>
+        <p id="feedback"></p> <br>
+        <p id="answer"></p> <br>
+        <p id="explanation"></p>
     </div>
 
 </body>
