@@ -25,6 +25,8 @@ const nozzleGroup = document.getElementById('nozzleGroup');
 const defaultGPM = document.getElementById('defaultGPM');
 const defaultGPM2 = document.getElementById('defaultGPM2');
 const scenario = document.getElementById('scenario');
+const constQuantitySelect = document.getElementById('constQuantitySelect');
+const constQuantityEntry = document.getElementById('constQuantityEntry');
 
 let correctAnswer = 0;
 let minRange = 0;
@@ -125,6 +127,16 @@ function handleLayoutChange() {
             layout3GPM.classList.remove('hidden');
             defaultGPM.checked = true;
             break;
+        default:
+            layout1Group.classList.add('hidden');
+            layout2Group.classList.add('hidden');
+            layout3Group.classList.add('hidden');
+            nozzleGroup.classList.add('hidden');
+            quantityRadios1.classList.add('hidden');
+            quantityRadios2.classList.add('hidden');
+            layoutGPMDefault.classList.add('hidden');
+            layout3GPM.classList.add('hidden');
+            hoseGroups.classList.add('hidden');
     }
 }
 
@@ -154,6 +166,16 @@ function highlightInvalid(name) {
     radios.forEach(r => r.parentElement.style.color = 'red');
 }
 
+function handleConstQuantityChange() {
+    if (constQuantitySelect.checked) {
+        constQuantityEntry.classList.remove('hidden');
+    } else {
+        constQuantityEntry.classList.add('hidden');
+    }
+
+    if (constQuantityEntry.value) {}
+}
+
 // Show other GPM entry
 quantityRadios.forEach((radio) => {
     radio.addEventListener('change', function () {
@@ -167,6 +189,9 @@ quantityRadios.forEach((radio) => {
 
 layoutRadios.forEach(radio => radio.addEventListener('change', handleLayoutChange));
 quantityRadios.forEach(radio => radio.addEventListener('change', handleQuantityChange));
+
+constQuantitySelect.addEventListener('change', handleConstQuantityChange);
+constQuantityEntry.addEventListener('change', handleConstQuantityChange);
 
 // Step 1 submission
 form1.addEventListener('submit', (e) => {
@@ -294,7 +319,6 @@ randomScenario.addEventListener('click', () => {
     }, 100);
 });
 
-
 // Step 2 submission
 form2.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -316,12 +340,15 @@ form2.addEventListener('submit', function(e) {
 // Reset button logic
 resetBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    form1.reset()
-    form2.reset()
+    layoutRadios.forEach(radio => radio.checked = false);
+    handleLayoutChange();
+    form1.reset();
+    form2.reset();
 
     // Reset UI
     step2.classList.add('hidden');
     step1.classList.remove('hidden');
+    handleLayoutChange();
     feedback.textContent = '';
     correctAnswer = 0;
 });
